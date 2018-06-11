@@ -1,18 +1,30 @@
 # Upman
 
-To start your Phoenix server:
+UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/upclid) to display pending updates and reboots.
+
+## Working features
+ - displaying pending updates
+ - displaying pending reboots
+ - displaying locked packages
+ - authenticating users via ldap (in preperation for actions, displaying works without login)
+
+## Currently plannend features
+ - (un)locking packages
+ - triggering updates runs
+ - triggering reboots
+ - showing custom facts about systems
+ - authenticating client systems with tokens
+ 
+## Trying out Upman
 
   * Install dependencies with `mix deps.get`
   * Start Phoenix endpoint with `mix phx.server`
+  * install and start [Upclid](https://github.com/flat235/upclid) on one or more systems
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+## Contributions very welcome!
+Issues, pull requests, documentation, questions, feature request, whatever your method - your contributions are very welcome!
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+## License
+[Apache 2.0](LICENSE)

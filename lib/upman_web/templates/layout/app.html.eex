@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="UPdateMANager">
+    <meta name="author" content="Moritz Bellach">
+
+    <title>Upman</title>
+    <!-- <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>"> -->
+    <!-- <link rel="stylesheet" href="https://unpkg.com/picnic"> -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
+
+  </head>
+
+  <body>
+  <div style="overflow: hidden;height: 50px;">
+    <nav>
+      <a href="/" class="button">UpMan</a>
+      <%= if logged_in(@conn) == :true do %>
+      <a href="/session/logout" class="button">Logout</a>
+      <% else %>
+      <a href="/session/login" class="button">Login</a>
+      <% end %>
+    </nav>
+  </div>
+    <div class="container">
+      
+
+      <p><%= get_flash(@conn, :info) %></p>
+      <p><strong><%= get_flash(@conn, :error) %></strong></p>
+
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>

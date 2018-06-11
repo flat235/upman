@@ -1,0 +1,45 @@
+<table>
+<thead>
+  <tr>
+    <th>
+    Server
+    </th>
+    <th>
+    Updates
+    </th>
+    <th>
+    Locked
+    </th>
+    <th>
+    Reboot?
+    </th>
+    <th>
+    Last report
+    </th>
+  </tr>
+</thead>
+<tbody>
+<%= for {name, data} <- Enum.sort(@servers) do %>
+  <tr>
+    <td>
+    <%= link name, to: "/servers/" <> name %>
+    </td>
+    <td>
+    <%= if Enum.count(data["updates"]) != 0, do: Enum.count data["updates"] %>
+    </td>
+    <td>
+    <%= if Enum.count(data["locked"]) != 0, do: Enum.count data["locked"] %>
+    </td>
+    <td>
+    <%= if data["reboot_needed"], do: "needed!" %>
+    </td>
+    <td>
+    <%= DateTime.to_string(data["last_report"]) |> String.split(":") |> Enum.take(2) |> Enum.join(":") %> UTC
+    </td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+
+

@@ -1,0 +1,6 @@
+<form action="/session/create" method="post">
+<input type="hidden" value="<%= @token %>" name="_csrf_token"/>
+<input id="username" name="username" type="text" placeholder="login">
+<input id="password" name="password" type="password" placeholder="password">
+<input type="submit" value="log me in">
+</form>

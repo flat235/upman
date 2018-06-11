@@ -1,0 +1,74 @@
+<h3><%= @server["name"] %></h3>
+<h5>last report: <%= DateTime.to_string(@server["last_report"]) |> String.split(":") |> Enum.take(2) |> Enum.join(":") %> UTC</h5>
+<%= if @server["os"] do %>
+<h5>OS-Release</h5>
+<table>
+<%= for {key, val} <- @server["os"] do %>
+<tr>
+    <td><%= key %></td>
+    <td><%= val %></td>
+</tr>
+<% end %>
+</table>
+<% end %>
+
+<%= if @server["customfacts"] do %>
+<h5>Custom Facts</h5>
+<table>
+<%= for {key, val} <- @server["customfacts"] do %>
+<tr>
+    <td><%= key %></td>
+    <td><%= val %></td>
+</tr>
+<% end %>
+</table>
+<% end %>
+
+<%= if @server["reboot_needed"] do %>
+<h5><b>reboot needed!</b></h5>
+<% end %>
+
+<%= if @server["updates"] do %>
+<table>
+<thead>
+    <tr>
+        <th>
+        Package
+        </th>
+        <th>
+        Current
+        </th>
+        <th>
+        New
+        </th>
+    </tr>
+</head>
+<tbody>
+<%= for %{"package" => package, "current" => current, "new" => new} <- @server["updates"] do %>
+    <tr>
+        <td>
+        <%= package %>
+        </td>
+        <td>
+        <%= if current, do: current %>
+        </td>
+        <td>
+        <%= new %>
+        </td>
+    </tr>
+<% end %>
+</tbody>
+</table>
+<% end %>
+
+<%= if @server["locked"] do %>
+<%= if Enum.count(@server["locked"]) != 0 do %>
+<h4>Locked Packages</h4>
+
+<ul>
+<%= for pkg <- @server["locked"] do %>
+<li><%= pkg %></li>
+<% end %>
+<% end %>
+<% end %>
+</ul>

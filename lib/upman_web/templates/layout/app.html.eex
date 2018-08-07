@@ -8,22 +8,20 @@
     <meta name="author" content="Moritz Bellach">
 
     <title>Upman</title>
-    <!-- <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>"> -->
-    <!-- <link rel="stylesheet" href="https://unpkg.com/picnic"> -->
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-    <link rel="stylesheet" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" href="//cdn.rawgit.com/milligram/milligram/master/dist/milligram.min.css">
 
+    <link rel="stylesheet" type="text/css" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/sakura-dark.css") %>">
   </head>
 
   <body>
   <div style="overflow: hidden;height: 50px;">
     <nav>
-      <a href="/" class="button">UpMan</a>
+      <a href="/">UpMan</a>
       <%= if logged_in(@conn) == :true do %>
-      <a href="/session/logout" class="button">Logout</a>
+      <a href="/session/logout">Logout</a>
       <% else %>
-      <a href="/session/login" class="button">Login</a>
+      <a href="/session/login">Login</a>
       <% end %>
     </nav>
   </div>

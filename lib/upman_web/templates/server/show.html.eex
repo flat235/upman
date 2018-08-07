@@ -12,7 +12,7 @@
 </table>
 <% end %>
 
-<%= if @server["customfacts"] do %>
+<%= if @server["customfacts"] != nil and @server["customfacts"] != [] do %>
 <h5>Custom Facts</h5>
 <table>
 <%= for {key, val} <- @server["customfacts"] do %>
@@ -28,7 +28,7 @@
 <h5><b>reboot needed!</b></h5>
 <% end %>
 
-<%= if @server["updates"] do %>
+<%= if @server["updates"] != nil and @server["updates"] != [] do %>
 <h5>Available Updates</h5>
 <table>
 <thead>

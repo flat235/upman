@@ -29,6 +29,7 @@
 <% end %>
 
 <%= if @server["updates"] do %>
+<h5>Available Updates</h5>
 <table>
 <thead>
     <tr>

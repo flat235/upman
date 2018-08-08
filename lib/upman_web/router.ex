@@ -22,7 +22,7 @@ defmodule UpmanWeb.Router do
     get "/session/login", SessionController, :new
     get "/session/logout", SessionController, :delete
     post "/session/create", SessionController, :create
-
+    post "/clearance/:name", ClearanceController, :set
   end
 
 
@@ -31,5 +31,6 @@ defmodule UpmanWeb.Router do
     pipe_through :api
     get "/server/:name", ApiController, :show
     post "/server/:name", ApiController, :update
+    get "/clearance/:name", ApiController, :clearance
   end
 end

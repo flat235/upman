@@ -3,9 +3,21 @@
 <p>last report: <%= timetag @server["last_report"] %></p>
 
 <%= if @server["reboot_needed"] do %>
-<h5><b>reboot needed!</b></h5>
+    <h5><b>reboot needed!</b></h5>
+    <%= form_for @conn, "/clearance/" <> @server["name"], fn f -> %>
+        <%= checkbox(f, :reboot, value: true, style: "display: none") %>
+        <a href="#confirm_reboot">authorize reboot</a>
+        <%= submit "Confirm", class: "collapsed", id: "confirm_reboot" %>
+    <% end %>
 <% end %>
 
+<%= if data_present @server["name"], "updates" do %>
+    <%= form_for @conn, "/clearance/" <> @server["name"], fn f -> %>
+        <%= checkbox(f, :update, value: true, style: "display: none") %>
+        <a href="#confirm_update">authorize update</a>
+        <%= submit "Confirm", class: "collapsed", id: "confirm_update" %>
+    <% end %>
+<% end %>
 <nav>
     <ul>
     <%= if data_present @server["name"], "updates" do %>

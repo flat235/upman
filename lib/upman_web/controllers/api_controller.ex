@@ -8,4 +8,8 @@ defmodule UpmanWeb.ApiController do
   def show(conn, %{"name" => server}) do
     json conn, Upman.Data.server(server)
   end
+
+  def clearance(conn, %{"name" => server}) do
+    json conn, Upman.Clearance.clearance(server)
+  end
 end

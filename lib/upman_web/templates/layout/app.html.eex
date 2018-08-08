@@ -12,10 +12,10 @@
     <link rel="stylesheet" type="text/css" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/sakura-dark.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/css/upman-custom.css") %>">
   </head>
 
   <body>
-  <div style="overflow: hidden;height: 50px;">
     <nav>
       <a href="/">UpMan</a>
       <%= if logged_in(@conn) == :true do %>
@@ -24,18 +24,13 @@
       <a href="/session/login">Login</a>
       <% end %>
     </nav>
-  </div>
-    <div class="container">
-      
+    <p><%= get_flash(@conn, :info) %></p>
+    <p><strong><%= get_flash(@conn, :error) %></strong></p>
 
-      <p><%= get_flash(@conn, :info) %></p>
-      <p><strong><%= get_flash(@conn, :error) %></strong></p>
+    <main>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

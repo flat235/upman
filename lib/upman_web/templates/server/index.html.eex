@@ -22,7 +22,7 @@
 <%= for {name, data} <- Enum.sort(@servers) do %>
   <tr>
     <td>
-    <%= link name, to: "/servers/" <> name %>
+    <%= linkserver name %>
     </td>
     <td>
     <%= if Enum.count(data["updates"]) != 0, do: Enum.count data["updates"] %>
@@ -34,7 +34,7 @@
     <%= if data["reboot_needed"], do: "needed!" %>
     </td>
     <td>
-    <%= DateTime.to_string(data["last_report"]) |> String.split(":") |> Enum.take(2) |> Enum.join(":") %> UTC
+    <%= timetag data["last_report"] %>
     </td>
   </tr>
 <% end %>

@@ -25,9 +25,9 @@
       <a href="/session/login">Login</a>
       <% end %>
     </h4>
-    </main>
     <p><%= get_flash(@conn, :info) %></p>
     <p><strong><%= get_flash(@conn, :error) %></strong></p>
+    </main>
 
 
     <%= render @view_module, @view_template, assigns %>

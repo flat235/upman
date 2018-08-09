@@ -1,24 +1,7 @@
-<h3><%= @server["name"] %></h3>
 
-<p>last report: <%= timetag @server["last_report"] %></p>
-
-<%= if @server["reboot_needed"] do %>
-    <h5><b>reboot needed!</b></h5>
-    <%= form_for @conn, "/clearance/" <> @server["name"], fn f -> %>
-        <%= checkbox(f, :reboot, value: true, style: "display: none") %>
-        <a href="#confirm_reboot">authorize reboot</a>
-        <%= submit "Confirm", class: "collapsed", id: "confirm_reboot" %>
-    <% end %>
-<% end %>
-
-<%= if data_present @server["name"], "updates" do %>
-    <%= form_for @conn, "/clearance/" <> @server["name"], fn f -> %>
-        <%= checkbox(f, :update, value: true, style: "display: none") %>
-        <a href="#confirm_update">authorize update</a>
-        <%= submit "Confirm", class: "collapsed", id: "confirm_update" %>
-    <% end %>
-<% end %>
 <nav>
+    <p>last report: <%= timetag @server["last_report"] %></p>
+
     <ul>
     <%= if data_present @server["name"], "updates" do %>
         <li><a href="#updates">Updates</a></li>
@@ -38,9 +21,34 @@
     </ul>
 </nav>
 
+<aside>
+<%= if logged_in(@conn) == :true do %>
+    <%= if @server["reboot_needed"] do %>
+        <h5><b>reboot needed!</b></h5>
+    <% end %>
+
+    <div class="dangerzone">
+    <header>Authorize Actions</header>
+    <%= form_for @conn, "/clearance/" <> @server["name"], fn f -> %>
+        <%= label do %>
+            <%= checkbox f, :reboot %>
+            Reboot
+        <% end %>
+        <%= label do %>
+            <%= checkbox(f, :update) %>
+            Update
+        <% end %>
+        <%= submit "Confirm" %>
+    <% end %>
+    </div>
+<% end %>
+</aside>
+
+<main>
+
 <%= if data_present @server["name"], "updates" do %>
 <section id="updates" class="collapsed">
-    <h5>Available Updates</h5>
+    <h5><%= @server["name"] %>: Available Updates</h5>
     <table>
     <thead>
         <tr>
@@ -50,11 +58,11 @@
         </tr>
     </head>
     <tbody>
-    <%= for %{"package" => package, "current" => current, "new" => new} <- @server["updates"] do %>
+    <%= for loopdata <- @server["updates"] do %>
         <tr>
-            <td><%= package %></td>
-            <td><%= if current, do: current %></td>
-            <td><%= new %></td>
+            <td><%= loopdata["package"] %></td>
+            <td><%= if loopdata["current"], do: loopdata["current"] %></td>
+            <td><%= loopdata["new"] %></td>
         </tr>
     <% end %>
     </tbody>
@@ -64,7 +72,7 @@
 
 <%= if data_present @server["name"], "locked" do %>
 <section id="locked" class="collapsed">
-    <h4>Locked Packages</h4>
+    <h5><%= @server["name"] %>: Locked Packages</h4>
     <ul>
     <%= for pkg <- @server["locked"] do %>
         <li><%= pkg %></li>
@@ -76,7 +84,7 @@
 
 <%= if data_present @server["name"], "os" do %>
 <section id="osrelease" class="collapsed">
-    <h5>OS-Release</h5>
+    <h5><%= @server["name"] %>: OS-Release</h5>
     <table>
     <%= for {key, val} <- @server["os"] do %>
         <tr>
@@ -90,7 +98,7 @@
 
 <%= if data_present @server["name"], "customfacts" do %>
 <section id="customfacts" class="collapsed">
-    <h5>Custom Facts</h5>
+    <h5><%= @server["name"] %>: Custom Facts</h5>
     <table>
     <%= for {key, val} <- @server["customfacts"] do %>
         <tr>
@@ -101,3 +109,5 @@
     </table>
 </section>
 <% end %>
+
+</main>

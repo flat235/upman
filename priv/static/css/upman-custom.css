@@ -2,8 +2,28 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
+body {
+    max-width: 76em;
+}
+
+main {
+    max-width: 38em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
+}
+
+aside {
+    float: right;
+    max-width: 19em;
+}
+
+nav {
+    float: left;
+    max-width: 19em;
 }
 
 .collapsed {
@@ -12,4 +32,20 @@ h1, h2, h3, h4, h5, h6 {
 
 .collapsed:target {
     display: block;
+}
+
+.dangerzone {
+    border-style: dashed;
+    border-width: 0.25em;
+    border-color: coral;
+    padding: 0.5em;
+}
+
+.dangerzone header {
+    border-bottom-style: dashed;
+    border-bottom-width: 0.25em;
+    border-bottom-color: coral;
+    padding-bottom: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: larger;
 }

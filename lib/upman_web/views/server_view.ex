@@ -1,5 +1,6 @@
 defmodule UpmanWeb.ServerView do
   use UpmanWeb, :view
+  import Upman.Session
 
   def data_present(server, name) do
     data = Upman.Data.server(server)

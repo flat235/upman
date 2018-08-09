@@ -16,20 +16,22 @@
   </head>
 
   <body>
-    <nav>
+    <main>
+    <h4>
       <a href="/">UpMan</a>
       <%= if logged_in(@conn) == :true do %>
       <a href="/session/logout">Logout</a>
       <% else %>
       <a href="/session/login">Login</a>
       <% end %>
-    </nav>
+    </h4>
+    </main>
     <p><%= get_flash(@conn, :info) %></p>
     <p><strong><%= get_flash(@conn, :error) %></strong></p>
 
-    <main>
-      <%= render @view_module, @view_template, assigns %>
-    </main>
+
+    <%= render @view_module, @view_template, assigns %>
+
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

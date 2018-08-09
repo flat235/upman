@@ -27,6 +27,13 @@ defmodule Upman.Data do
       "reboot_needed" => params["reboot_needed"] || false,
       "locked" => params["locked"] || []
     }
+    # reset clearances
+    if data["reboot_needed"] == false do
+      Upman.Clearance.upsert(server, %{"reboot" => "false"})
+    end
+    if data["updates"] == nil or Enum.count(data["updates"]) == 0 do
+      Upman.Clearance.upsert(server, %{"updates" => "false"})
+    end
     Logger.info inspect(data)
     :ets.insert :upman, {server, data}
     entry = :ets.lookup(:upman, server) |> Enum.into(%{})

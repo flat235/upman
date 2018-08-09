@@ -14,8 +14,6 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
  - triggering reboots
 
 ## TODO:
- - make clearances resetable via web interface
- - reset clearances when action is finished
  - check clearances in [Upclid](https://github.com/flat235/upclid) and start actions
 
 ## Currently plannend features

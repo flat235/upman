@@ -23,4 +23,14 @@ defmodule UpmanWeb.ServerView do
     human_time = (timestr |> String.split(":") |> Enum.take(2) |> Enum.join(":")) <> " UTC"
     content_tag :time, human_time, datetime: timestr
   end
+
+  def reboot_authorized(server) do
+    Upman.Clearance.clearance(server)
+    |> Map.get("reboot", false)
+  end
+
+  def update_authorized(server) do
+    Upman.Clearance.clearance(server)
+    |> Map.get("update", false)
+  end
 end

@@ -31,11 +31,11 @@
     <header>Authorize Actions</header>
     <%= form_for @conn, "/clearance/" <> @server["name"], fn f -> %>
         <%= label do %>
-            <%= checkbox f, :reboot %>
+            <%= checkbox f, :reboot, value: reboot_authorized(@server["name"]) %>
             Reboot
         <% end %>
         <%= label do %>
-            <%= checkbox(f, :update) %>
+            <%= checkbox(f, :update, value: update_authorized(@server["name"])) %>
             Update
         <% end %>
         <%= submit "Confirm" %>

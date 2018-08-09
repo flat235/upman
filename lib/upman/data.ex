@@ -32,7 +32,7 @@ defmodule Upman.Data do
       Upman.Clearance.upsert(server, %{"reboot" => "false"})
     end
     if data["updates"] == nil or Enum.count(data["updates"]) == 0 do
-      Upman.Clearance.upsert(server, %{"updates" => "false"})
+      Upman.Clearance.upsert(server, %{"update" => "false"})
     end
     Logger.info inspect(data)
     :ets.insert :upman, {server, data}

@@ -27,9 +27,15 @@ config :phoenix, :template_engines,
 config :exldap, :settings,
   server: "ldap.example.com",
   base: "dc=example,dc=com",
-  port: 389,
-  ssl: false,
+  port: 636,
+  ssl: true,
   search_timeout: 5_000
+
+config :exldap,
+  group: "admins",
+  userAttr: "uid",
+  groupAttr: "cn",
+  memberAttr: "memberUid"
 
 
 import_config "#{Mix.env}.exs"

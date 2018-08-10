@@ -6,18 +6,28 @@ defmodule UpmanWeb.SessionController do
   end
 
   def create(conn, %{"username" => username, "password" => password}) do
-    case auth(username, password) do
-      :ok -> conn |> put_session(:logged_in, :true) |> put_session(:user, username) |> put_flash(:info, "Access granted") |> redirect(to: server_path(conn, :index))
-      _ -> conn |> put_flash(:error, "Access Denied") |> redirect(to: session_path(conn, :new))
+    if auth(username, password) do
+      conn |> put_session(:logged_in, :true) |> put_session(:user, username) |> put_flash(:info, "Access granted") |> redirect(to: server_path(conn, :index))
+    else
+      conn |> put_flash(:error, "Access Denied") |> redirect(to: session_path(conn, :new))
     end
   end
 
   def auth(username, password) do
     with  {:ok, ldap} <- Exldap.open,
-          {:ok, [entry]} <- Exldap.search_field(ldap, "ou=users,dc=hoou,dc=ovh", "uid", username),
+          {:ok, [entry]} <- Exldap.search_field(ldap, Application.fetch_env!(:exldap, :userAttr), username),
           dn <- entry.object_name
     do
-      Exldap.verify_credentials(ldap, dn, password)
+      try do
+        :ok = Exldap.verify_credentials(ldap, dn, password)
+        Exldap.search_field(ldap, Application.fetch_env!(:exldap, :groupAttr), Application.fetch_env!(:exldap, :group))
+        |> elem(1)
+        |> List.first
+        |> Exldap.get_attribute!(Application.fetch_env!(:exldap, :memberAttr))
+        |> Enum.member?(username)
+      rescue
+        _ -> false
+      end
     else
       _ -> {:error, "authentication failed"}
     end

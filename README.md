@@ -8,13 +8,8 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
  - displaying locked packages
  - authenticating users via ldap (in preperation for actions, displaying works without login)
  - showing custom facts about systems (if custom facts are implemented)
-  
-## In progress
  - triggering updates runs
  - triggering reboots
-
-## TODO:
- - check clearances in [Upclid](https://github.com/flat235/upclid) and start actions
 
 ## Currently plannend features
  - (un)locking packages

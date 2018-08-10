@@ -6,7 +6,8 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
  - displaying pending updates
  - displaying pending reboots
  - displaying locked packages
- - authenticating users via ldap (in preperation for actions, displaying works without login)
+ - authenticating users via ldap (for actions, displaying works without login)
+ - authorizing users via ldap (simple group check)
  - showing custom facts about systems (if custom facts are implemented)
  - triggering updates runs
  - triggering reboots

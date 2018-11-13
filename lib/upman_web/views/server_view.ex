@@ -19,9 +19,9 @@ defmodule UpmanWeb.ServerView do
   end
 
   def timetag(time) do
+    minutes_ago = Integer.to_string(div(DateTime.diff(DateTime.utc_now(), time), 60)) <> "m ago"
     timestr = DateTime.to_string(time)
-    human_time = (timestr |> String.split(":") |> Enum.take(2) |> Enum.join(":")) <> " UTC"
-    content_tag :time, human_time, datetime: timestr
+    content_tag :time, minutes_ago, [datetime: timestr, title: timestr]
   end
 
   def reboot_authorized(server) do

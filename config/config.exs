@@ -25,8 +25,8 @@ config :phoenix, :template_engines,
   pug: PhoenixExpug.Engine
 
 config :exldap, :settings,
-  server: "ldap.example.com",
-  base: "dc=example,dc=com",
+  server: "ldap.hoou.tech",
+  base: "dc=hoou,dc=ovh",
   port: 636,
   ssl: true,
   search_timeout: 5_000

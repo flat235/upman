@@ -39,7 +39,7 @@ defmodule Upman.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:phoenix_expug, "~> 0.1"},
-      {:distillery, "~> 1.5", runtime: true},
+      {:distillery, "~> 2.0", runtime: true},
       {:exldap, "~> 0.6.3"}
     ]
   end

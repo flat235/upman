@@ -24,18 +24,5 @@ config :logger, :console,
 config :phoenix, :template_engines,
   pug: PhoenixExpug.Engine
 
-config :exldap, :settings,
-  server: "ldap.hoou.tech",
-  base: "dc=hoou,dc=ovh",
-  port: 636,
-  ssl: true,
-  search_timeout: 5_000
-
-config :exldap,
-  group: "admins",
-  userAttr: "uid",
-  groupAttr: "cn",
-  memberAttr: "memberUid"
-
 
 import_config "#{Mix.env}.exs"

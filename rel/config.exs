@@ -48,6 +48,9 @@ end
 
 release :upman do
   set version: current_version(:upman)
+  set config_providers: [
+    {Toml.Provider, [path: "/etc/upman.toml"]}
+  ]
   set applications: [
     :runtime_tools
   ]

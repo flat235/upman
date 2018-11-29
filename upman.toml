@@ -1,0 +1,16 @@
+[upman."UpmanWeb.Endpoint".url]
+host = "localhost"
+port = 4000
+
+[exldap."settings"]
+server = "ldap.example.com"
+base = "dc=example,dc=com"
+port = 636
+ssl = true
+search_timeout = 5000
+
+[exldap]
+group = "admins"
+userAttr = "uid"
+groupAttr = "cn"
+memberAttr = "memberUid"

@@ -1,0 +1,15 @@
+[Unit]
+Description=upman, the update manager
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/upman
+Environment="HOME=/opt/upman"
+ExecStart=/opt/upman/bin/upman foreground
+ExecStop=/opt/upman/bin/upman stop
+ExecReload=/opt/upman/bin/upman restart
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -23,7 +23,7 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
   - run `mix deps.get` to install dependencies
   - run `mix phx.digest` to create compressed assets
   - run `mix release` to create a release-package
-  - run `sudo tar -C /opt/upman -xzf _build/prod/rel/upman/releases/0.0.1/upman.tar.gz` to install the release locally
+  - run `sudo tar -C /opt/upman -xzf _build/prod/rel/upman/releases/${VERSION}/upman.tar.gz` to install the release locally
   - Start Upman via `systemctl start upman`
   - install and start [Upclid](https://github.com/flat235/upclid) on one or more systems
 

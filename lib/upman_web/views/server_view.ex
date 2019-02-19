@@ -8,20 +8,22 @@ defmodule UpmanWeb.ServerView do
   end
 
   def linkserver(name) do
-    target = cond do
-      data_present(name, "updates") -> "#updates"
-      data_present(name, "locked") -> "#locked"
-      data_present(name, "os") -> "#osrelease"
-      data_present(name, "customfacts") -> "#customfacts"
-      true -> ""
-    end
-    link name, to: "/servers/" <> name <> target
+    target =
+      cond do
+        data_present(name, "updates") -> "#updates"
+        data_present(name, "locked") -> "#locked"
+        data_present(name, "os") -> "#osrelease"
+        data_present(name, "customfacts") -> "#customfacts"
+        true -> ""
+      end
+
+    link(name, to: server_path(UpmanWeb.Endpoint, :show, name) <> target, id: name)
   end
 
   def timetag(time) do
     minutes_ago = Integer.to_string(div(DateTime.diff(DateTime.utc_now(), time), 60)) <> "m ago"
     timestr = DateTime.to_string(time)
-    content_tag :time, minutes_ago, [datetime: timestr, title: timestr]
+    content_tag(:time, minutes_ago, datetime: timestr, title: timestr)
   end
 
   def reboot_authorized(server) do

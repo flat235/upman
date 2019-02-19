@@ -21,7 +21,7 @@ defmodule UpmanWeb do
     quote do
       use Phoenix.Controller, namespace: UpmanWeb
       import Plug.Conn
-      import UpmanWeb.Router.Helpers
+      alias  UpmanWeb.Router.Helpers, as: Routes
       import UpmanWeb.Gettext
     end
   end
@@ -37,7 +37,7 @@ defmodule UpmanWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import UpmanWeb.Router.Helpers
+      alias  UpmanWeb.Router.Helpers, as: Routes
       import UpmanWeb.ErrorHelpers
       import UpmanWeb.Gettext
     end

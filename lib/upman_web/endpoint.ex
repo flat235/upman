@@ -1,7 +1,9 @@
 defmodule UpmanWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :upman
 
-  socket "/socket", UpmanWeb.UserSocket
+  socket "/socket", UpmanWeb.UserSocket,
+    websocket: true, # or list of options
+    longpoll: true
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -24,7 +26,7 @@ defmodule UpmanWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
 
   plug Plug.MethodOverride
   plug Plug.Head

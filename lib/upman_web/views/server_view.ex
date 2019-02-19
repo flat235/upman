@@ -17,7 +17,7 @@ defmodule UpmanWeb.ServerView do
         true -> ""
       end
 
-    link(name, to: server_path(UpmanWeb.Endpoint, :show, name) <> target, id: name)
+    link(name, to: Routes.server_path(UpmanWeb.Endpoint, :show, name) <> target, id: name)
   end
 
   def timetag(time) do

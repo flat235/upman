@@ -9,11 +9,11 @@ defmodule UpmanWeb.ClearanceController do
 
       conn
       |> put_flash(:info, "clearance set")
-      |> redirect(to: server_path(conn, :index) <> "#" <> server)
+      |> redirect(to: Routes.server_path(conn, :index) <> "#" <> server)
     else
       conn
       |> put_flash(:error, "Access Denied")
-      |> redirect(to: server_path(conn, :index) <> "#" <> server)
+      |> redirect(to: Routes.server_path(conn, :index) <> "#" <> server)
     end
   end
 end

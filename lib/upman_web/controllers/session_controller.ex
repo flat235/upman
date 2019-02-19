@@ -11,9 +11,9 @@ defmodule UpmanWeb.SessionController do
       |> put_session(:logged_in, true)
       |> put_session(:user, username)
       |> put_flash(:info, "Access granted")
-      |> redirect(to: server_path(conn, :index))
+      |> redirect(to: Routes.server_path(conn, :index))
     else
-      conn |> put_flash(:error, "Access Denied") |> redirect(to: session_path(conn, :new))
+      conn |> put_flash(:error, "Access Denied") |> redirect(to: Routes.session_path(conn, :new))
     end
   end
 
@@ -47,6 +47,6 @@ defmodule UpmanWeb.SessionController do
     |> delete_session(:logged_in)
     |> delete_session(:user)
     |> put_flash(:info, "logged out")
-    |> redirect(to: server_path(conn, :index))
+    |> redirect(to: Routes.server_path(conn, :index))
   end
 end

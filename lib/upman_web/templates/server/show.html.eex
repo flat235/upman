@@ -29,7 +29,7 @@
 
     <div class="dangerzone">
     <header>Authorize Actions</header>
-    <%= form_for @conn, Routes.clearance_path(@conn, :set, @server["name"]), fn f -> %>
+    <%= form_for @conn, Routes.clearance_path(@conn, :set, @server["name"]), [], fn f -> %>
         <%= label do %>
             <%= checkbox f, :reboot, value: reboot_authorized(@server["name"]) %>
             Reboot

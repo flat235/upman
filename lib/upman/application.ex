@@ -10,8 +10,9 @@ defmodule Upman.Application do
     children = [
       # Start the endpoint when the application starts
       supervisor(UpmanWeb.Endpoint, []),
+      worker(Upman.TableManager, [[]]),
       worker(Upman.Data, [[]]),
-      worker(Upman.Clearance, [[]]),
+      worker(Upman.Clearance, [[]])
       # Start your own worker by calling: Upman.Worker.start_link(arg1, arg2, arg3)
       # worker(Upman.Worker, [arg1, arg2, arg3]),
     ]

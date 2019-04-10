@@ -4,7 +4,7 @@ defmodule Upman.Clearance do
   def handle_call({:clearance, name}, _from, state) do
     clearance =
       try do
-        :ets.lookup(:upman_clearance, name) |> List.first() |> elem(1) |> Enum.into(%{})
+        :ets.lookup(state, name) |> List.first() |> elem(1) |> Enum.into(%{})
       rescue
         _ -> %{}
       end
@@ -15,16 +15,16 @@ defmodule Upman.Clearance do
   def handle_call({:upsert, server, params}, _from, state) do
     old_clearance =
       try do
-        :ets.lookup(:upman_clearance, server) |> List.first() |> elem(1) |> Enum.into(%{})
+        :ets.lookup(state, server) |> List.first() |> elem(1) |> Enum.into(%{})
       rescue
         _ -> %{}
       end
 
-    :ets.delete(:upman_clearance, server)
+    :ets.delete(state, server)
     data = Map.merge(old_clearance, params)
     Logger.info(inspect(data))
-    :ets.insert(:upman_clearance, {server, data})
-    entry = :ets.lookup(:upman_clearance, server) |> Enum.into(%{})
+    :ets.insert(state, {server, data})
+    entry = :ets.lookup(state, server) |> Enum.into(%{})
     {:reply, entry, state}
   end
 

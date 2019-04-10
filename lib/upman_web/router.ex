@@ -9,13 +9,13 @@ defmodule UpmanWeb.Router do
     plug :put_secure_browser_headers
   end
 
-
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   scope "/", UpmanWeb do
-    pipe_through [:browser] # Use the default browser stack
+    # Use the default browser stack
+    pipe_through [:browser]
 
     resources("/servers", ServerController)
     get "/", PageController, :index
@@ -25,10 +25,9 @@ defmodule UpmanWeb.Router do
     post "/clearance/:name", ClearanceController, :set
   end
 
-
-
   scope "/api", UpmanWeb do
     pipe_through :api
+    get "/servers", ApiController, :index
     get "/server/:name", ApiController, :show
     post "/server/:name", ApiController, :update
     get "/clearance/:name", ApiController, :clearance

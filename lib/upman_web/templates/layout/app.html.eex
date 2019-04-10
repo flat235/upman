@@ -11,8 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/sakura-dark.css") %>">
-    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/upman-custom.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>

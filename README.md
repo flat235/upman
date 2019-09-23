@@ -14,7 +14,7 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
 
 ## Currently plannend features
  - (un)locking packages
- - authenticating client systems via tokens
+ - instead of authenticating clients: update reports get hashed on both sides, update will only be executed if hash matches
  
 ## Deploying Upman
   - Install current erlang (i.e. from [here](https://www.erlang-solutions.com/resources/download.html)

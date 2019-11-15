@@ -14,7 +14,8 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
 
 ## Currently plannend features
  - (un)locking packages
- - instead of authenticating clients: update reports get hashed on both sides, update will only be executed if hash matches
+ - instead of authenticating clients: update-clearance includes list of reported updatetable packages. client only installs updates, if list matches.
+ - display log of last update-run
  
 ## Deploying Upman
   - Install current erlang (i.e. from [here](https://www.erlang-solutions.com/resources/download.html)
@@ -22,8 +23,8 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
   - copy `upman.toml` to `/etc/upman.toml` and customize the ldap settings, port, etc.
   - run `mix deps.get` to install dependencies
   - run `mix phx.digest` to create compressed assets
-  - run `mix release` to create a release-package
-  - run `sudo tar -C /opt/upman -xzf _build/prod/rel/upman/releases/${VERSION}/upman.tar.gz` to install the release locally
+  - run `MIX_ENV=prod mix release` to create a release-package
+  - run `cd _build/prod/rel/; tar -c upman | sudo tar -C /opt/ -x` to install the release locally
   - Start Upman via `systemctl start upman`
   - install and start [Upclid](https://github.com/flat235/upclid) on one or more systems
 

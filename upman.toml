@@ -1,6 +1,8 @@
+[upman."UpmanWeb.Endpoint".http]
+port = 80
+
 [upman."UpmanWeb.Endpoint".url]
 host = "localhost"
-port = 4000
 
 [exldap."settings"]
 server = "ldap.example.com"

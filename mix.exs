@@ -4,12 +4,21 @@ defmodule Upman.Mixfile do
   def project do
     [
       app: :upman,
-      version: "0.2.4",
-      elixir: "~> 1.4",
+      version: "0.2.5",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      releases: [
+        upman: [
+          include_executables_for: [:unix],
+          applications: [runtime_tools: :permanent],
+          config_providers: [
+            {TomlConfigProvider, path: "/etc/upman.toml"}
+          ]
+        ]
+      ]
     ]
   end
 
@@ -39,9 +48,8 @@ defmodule Upman.Mixfile do
       {:gettext, "~> 0.11"},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.7"},
-      {:toml, "~> 0.3"},
+      {:toml_config, "~> 0.1"},
       {:jason, "~>1.0"},
-      {:distillery, "~> 2.0", runtime: true},
       {:exldap, "~> 0.6.3"}
     ]
   end

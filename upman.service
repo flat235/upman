@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 WorkingDirectory=/opt/upman
 Environment="HOME=/opt/upman"
-ExecStart=/opt/upman/bin/upman foreground
+ExecStart=/opt/upman/bin/upman start
 ExecStop=/opt/upman/bin/upman stop
 ExecReload=/opt/upman/bin/upman restart
 Restart=on-failure

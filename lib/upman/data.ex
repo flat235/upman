@@ -7,8 +7,12 @@ defmodule Upman.Data do
   end
 
   def handle_call({:server, name}, _from, state) do
-    server = :ets.lookup(state, name) |> List.first() |> elem(1) |> Enum.into(%{})
-    {:reply, server, state}
+    server = :ets.lookup(state, name) |> List.first() 
+    if server == nil do
+      {:reply, nil, state}
+    else
+      {:reply, server |> elem(1) |> Enum.into(%{}), state}
+    end
   end
 
   def handle_call({:upsert, server, params}, _from, state) do

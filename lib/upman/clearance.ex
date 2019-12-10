@@ -2,14 +2,12 @@ defmodule Upman.Clearance do
   use Upman.ManagedTable
 
   def handle_call({:clearance, name}, _from, state) do
-    clearance =
-      try do
-        :ets.lookup(state, name) |> List.first() |> elem(1) |> Enum.into(%{})
-      rescue
-        _ -> %{}
-      end
-
-    {:reply, clearance, state}
+    clearance = :ets.lookup(state, name) |> List.first()
+    if clearance == nil do
+      {:reply, %{}, state}
+    else
+      {:reply, clearance |> elem(1) |> Enum.into(%{}), state}
+    end
   end
 
   def handle_call({:upsert, server, params}, _from, state) do

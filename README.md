@@ -6,6 +6,7 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
  - displaying pending updates
  - displaying pending reboots
  - displaying locked packages
+ - display log of last update-run
  - authenticating users via ldap (for actions, displaying works without login)
  - authorizing users via ldap (simple group check)
  - showing custom facts about systems (if custom facts are implemented)
@@ -15,7 +16,6 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
 ## Currently plannend features
  - (un)locking packages
  - instead of authenticating clients: update-clearance includes list of reported updatetable packages. client only installs updates, if list matches.
- - display log of last update-run
  
 ## Deploying Upman
   - Install current erlang (i.e. from [here](https://www.erlang-solutions.com/resources/download.html)

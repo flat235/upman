@@ -31,5 +31,7 @@ defmodule UpmanWeb.Router do
     get "/server/:name", ApiController, :show
     post "/server/:name", ApiController, :update
     get "/clearance/:name", ApiController, :clearance
+    get "/result/:server", ResultController, :show
+    post "/result/:server", ResultController, :update
   end
 end

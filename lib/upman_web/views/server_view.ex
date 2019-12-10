@@ -1,16 +1,23 @@
 defmodule UpmanWeb.ServerView do
   use UpmanWeb, :view
   import Upman.Session
+  import Upman.Result
 
   def data_present(server, name) do
     data = Upman.Data.server(server)
     data[name] != nil && data[name] != []
   end
 
+  def result_present(server) do
+    result = Upman.Result.result(server)
+    result != nil
+  end
+
   def linkserver(name) do
     target =
       cond do
         data_present(name, "updates") -> "#updates"
+        result_present(name) -> "#result"
         data_present(name, "locked") -> "#locked"
         data_present(name, "os") -> "#osrelease"
         data_present(name, "customfacts") -> "#customfacts"
@@ -34,5 +41,9 @@ defmodule UpmanWeb.ServerView do
   def update_authorized(server) do
     Upman.Clearance.clearance(server)
     |> Map.get("update", false)
+  end
+
+  def update_result(server) do
+    result(server)
   end
 end

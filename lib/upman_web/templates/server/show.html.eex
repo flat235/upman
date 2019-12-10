@@ -7,6 +7,10 @@
         <li><a href="#updates">Updates</a></li>
     <% end %>
 
+    <%= if result_present @server["name"] do %>
+        <li><a href="#result">Last Update Log</a></li>
+    <% end %>
+
     <%= if data_present @server["name"], "locked" do %>
         <li><a href="#locked">Locked Packages</a></li>
     <% end %>
@@ -67,6 +71,14 @@
     <% end %>
     </tbody>
     </table>
+</section>
+<% end %>
+
+<%= if result_present @server["name"] do %>
+<section id="result" class="collapsed">
+    <h5><%= @server["name"] %>: Last Update Log</h5>
+    Exit Status: <%= update_result(@server["name"])["exit_code"] %>
+    <%= text_to_html(update_result(@server["name"])["log"]) %>
 </section>
 <% end %>
 

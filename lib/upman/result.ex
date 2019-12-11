@@ -11,9 +11,11 @@ defmodule Upman.Result do
     end
   end
 
-  def handle_call({:upsert, server, params}, _from, state) do
+  def handle_call({:upsert, server, %{"log" => log} = _params}, _from, state) do
     :ets.delete(state, server)
-    :ets.insert(state, {server, params})
+    cleanlog = String.replace(log, "\r", "\n", [])
+    timestamp = DateTime.utc_now()
+    :ets.insert(state, {server, %{"log" => cleanlog, "timestamp" => timestamp}})
     {:reply, :ok, state}
   end
 

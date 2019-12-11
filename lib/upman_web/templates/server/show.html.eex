@@ -76,7 +76,7 @@
 
 <%= if result_present @server["name"] do %>
 <section id="result" class="collapsed">
-    <h5><%= @server["name"] %>: Last Update Log</h5>
+  <h5><%= @server["name"] %>: Last Update Log (<%= timetag update_result(@server["name"])["timestamp"] %>)</h5>
     <%= text_to_html(update_result(@server["name"])["log"]) %>
 </section>
 <% end %>

@@ -9,9 +9,10 @@
 
     <title>Upman</title>
 
-    <link rel="stylesheet" type="text/css" href="//cdn.rawgit.com/necolas/normalize.css/master/normalize.css">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
-    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/normalize.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/roboto.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/sakura-dark.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= Routes.static_path(@conn, "/css/upman-custom.css") %>">
   </head>
 
   <body>
@@ -32,6 +33,5 @@
     <%= render @view_module, @view_template, assigns %>
 
 
-    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

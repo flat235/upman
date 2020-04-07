@@ -4,7 +4,7 @@ defmodule Upman.Mixfile do
   def project do
     [
       app: :upman,
-      version: "0.2.11",
+      version: "0.2.12",
       elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -16,7 +16,8 @@ defmodule Upman.Mixfile do
           applications: [runtime_tools: :permanent],
           config_providers: [
             {TomlConfigProvider, path: "/etc/upman.toml"}
-          ]
+          ],
+          steps: [:assemble, :tar]
         ]
       ]
     ]

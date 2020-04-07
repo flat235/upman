@@ -12,6 +12,7 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
  - showing custom facts about systems (if custom facts are implemented)
  - triggering updates runs
  - triggering reboots
+ - panic button (abort all updates/reboot, that have not been started)
 
 ## Currently plannend features
  - (un)locking packages
@@ -24,11 +25,11 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
   - run `mix deps.get` to install dependencies
   - run `mix phx.digest` to create compressed assets
   - run `MIX_ENV=prod mix release` to create a release-package
-  - run `cd _build/prod/rel/; tar -c upman | sudo tar -C /opt/ -x` to install the release locally
+  - run `tar -C /opt/upman -xzf _build/prod/upman-$version.tar.gz` to install the release locally
   - Start Upman via `systemctl start upman`
   - install and start [Upclid](https://github.com/flat235/upclid) on one or more systems
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit [`localhost`](http://localhost) from your browser.
 
 ## Contributions very welcome!
 Issues, pull requests, documentation, questions, feature request, whatever your method - your contributions are very welcome!

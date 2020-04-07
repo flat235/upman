@@ -23,6 +23,7 @@ defmodule UpmanWeb.Router do
     get "/session/logout", SessionController, :delete
     post "/session/create", SessionController, :create
     post "/clearance/:name", ClearanceController, :set
+    post "/panic", ClearanceController, :panic
   end
 
   scope "/api", UpmanWeb do

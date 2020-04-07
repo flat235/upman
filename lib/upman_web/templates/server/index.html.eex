@@ -1,5 +1,13 @@
 
+<aside>
+<%= if logged_in(@conn) == :true do %>
+    <div class="dangerzone">
+      <%= button("Panic", to: "/panic") %>
+    </div>
+<% end %>
+</aside>
 <main>
+
 <h5>Overview</h5>
 <table>
 <thead>

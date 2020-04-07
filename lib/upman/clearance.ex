@@ -26,11 +26,20 @@ defmodule Upman.Clearance do
     {:reply, entry, state}
   end
 
+  def handle_call({:panic}, _from, state) do
+    :ets.delete_all_objects(state)
+    {:reply, :ok, state}
+  end
+
   def clearance(name) do
     GenServer.call(__MODULE__, {:clearance, name})
   end
 
   def upsert(server, params) do
     GenServer.call(__MODULE__, {:upsert, server, params})
+  end
+
+  def panic() do
+    GenServer.call(__MODULE__, {:panic})
   end
 end

@@ -2,7 +2,10 @@
 <aside>
 <%= if logged_in(@conn) == :true do %>
     <div class="dangerzone">
-      <%= button("Panic", to: "/panic") %>
+    <header>Deauthorize Actions</header>
+    <%= form_for @conn, Routes.clearance_path(@conn, :panic), [], fn _f -> %>
+      <%= submit "Panic!" %>
+    <% end %>
     </div>
 <% end %>
 </aside>

@@ -27,8 +27,12 @@ defmodule Upman.Clearance do
   end
 
   def handle_call({:panic}, _from, state) do
-    :ets.delete_all_objects(state)
-    {:reply, :ok, state}
+    res = :ets.delete_all_objects(state)
+    if res == true do
+      {:reply, :ok, state}
+    else
+      {:reply, :error, state}
+    end
   end
 
   def clearance(name) do

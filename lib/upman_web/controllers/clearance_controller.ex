@@ -19,10 +19,16 @@ defmodule UpmanWeb.ClearanceController do
 
   def panic(conn, _params) do
     if logged_in(conn) do
-      Upman.Clearance.panic()
-      conn
-      |> put_flash(:info, "all clearances deleted")
-      |> redirect(to: Routes.server_path(conn, :index))
+      res = Upman.Clearance.panic()
+      if res == :ok do
+        conn
+        |> put_flash(:info, "all clearances deleted")
+        |> redirect(to: Routes.server_path(conn, :index))
+      else
+        conn
+        |> put_flash(:error, "could not delete clearances")
+        |> redirect(to: Routes.server_path(conn, :index))
+      end
     else
       conn
       |> put_flash(:error, "not logged in")

@@ -42,6 +42,10 @@
             <%= checkbox(f, :update, value: update_authorized(@server["name"])) %>
             Update
         <% end %>
+        <%= label do %>
+            <%= checkbox(f, :forget, value: false) %>
+            Forget
+        <% end %>
         <%= submit "Confirm" %>
     <% end %>
     </div>

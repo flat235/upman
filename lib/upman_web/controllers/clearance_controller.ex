@@ -4,12 +4,20 @@ defmodule UpmanWeb.ClearanceController do
 
   def set(conn, %{"name" => server} = params) do
     if logged_in(conn) do
-      data = Map.drop(params, ["_utf8", "_csrf_token"])
-      Upman.Clearance.upsert(server, data)
+      if params["forget"] == "true" do
+        Upman.Clearance.forget(server)
+        Upman.Data.forget(server)
+        conn
+        |> put_flash(:info, "forgot " <> server)
+        |> redirect(to: Routes.server_path(conn, :index))
+      else
+        data = Map.drop(params, ["_utf8", "_csrf_token"])
+        Upman.Clearance.upsert(server, data)
 
-      conn
-      |> put_flash(:info, "clearance set")
-      |> redirect(to: Routes.server_path(conn, :index) <> "#" <> server)
+        conn
+        |> put_flash(:info, "clearance set")
+        |> redirect(to: Routes.server_path(conn, :index) <> "#" <> server)
+      end
     else
       conn
       |> put_flash(:error, "Access Denied")

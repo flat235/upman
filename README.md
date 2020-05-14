@@ -13,6 +13,7 @@ UPdata MANager is used in conjunction with [Upclid](https://github.com/flat235/u
  - triggering updates runs
  - triggering reboots
  - panic button (abort all updates/reboot, that have not been started)
+ - optionally save ets tables to disk on shutdown (for hot cache / persistent persmissions&locks)
 
 ## Currently plannend features
  - (un)locking packages

@@ -5,6 +5,7 @@ defmodule Upman.ManagedTable do
       require Logger
 
       def init(_args) do
+        Process.flag(:trap_exit, true)
         Logger.info("#{__MODULE__}: claiming ETS Table named #{__MODULE__}")
         Upman.TableManager.claim_table(__MODULE__)
         {:ok, nil}
@@ -17,6 +18,10 @@ defmodule Upman.ManagedTable do
       def handle_info({:"ETS-TRANSFER", table, _OldOwner, name}, _state) do
         Logger.info("#{__MODULE__}: receiving ETS Table named #{name}")
         {:noreply, table}
+      end
+
+      def terminate(reason, state) do
+        PersistentTable.write(state, __MODULE__)
       end
     end
   end

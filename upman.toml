@@ -1,3 +1,6 @@
+[upman]
+persistdir = "/var/lib/upman"
+
 [upman."UpmanWeb.Endpoint".http]
 port = 80
 

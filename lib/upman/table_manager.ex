@@ -16,8 +16,7 @@ defmodule Upman.TableManager do
       table = state[name]
       give_table(table, name, Map.delete(state, name), pid)
     else
-      Logger.info("#{__MODULE__}: returning new ETS Table named #{name}")
-      give_table(:ets.new(name, [:named_table]), name, state, pid)
+      give_table(PersistentTable.read(name), name, state, pid)
     end
   end
 
@@ -29,6 +28,7 @@ defmodule Upman.TableManager do
 
   def handle_info({:"ETS-TRANSFER", table, _OldOwner, name}, state) do
     Logger.info("#{__MODULE__}: saving ETS Table named #{name}")
+    PersistentTable.write(table, name)
     {:noreply, Map.put(state, name, table)}
   end
 

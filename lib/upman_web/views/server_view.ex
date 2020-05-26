@@ -43,6 +43,11 @@ defmodule UpmanWeb.ServerView do
     |> Map.get("update", false)
   end
 
+  def upman_locked(server) do
+    Upman.Clearance.clearance(server)
+    |> Map.get("upman_locked", false)
+  end
+
   def update_result(server) do
     result(server)
   end

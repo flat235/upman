@@ -43,6 +43,10 @@
             Update
         <% end %>
         <%= label do %>
+            <%= checkbox(f, :upman_locked, value: upman_locked(@server["name"])) %>
+            Upman-Lock
+        <% end %>
+        <%= label do %>
             <%= checkbox(f, :forget, value: false) %>
             Forget
         <% end %>
